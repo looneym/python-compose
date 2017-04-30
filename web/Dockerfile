@@ -1,5 +1,8 @@
 # Using official python runtime base image
-FROM python:3.6-alpine
+FROM python:3.6
+
+# Install OS level requirements
+RUN apt-get install gcc 
 
 # Set the application directory
 WORKDIR /app
