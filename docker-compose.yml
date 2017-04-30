@@ -21,4 +21,8 @@ services:
     volumes:
     - ./webview:app
 
-
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
