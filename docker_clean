@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# remove all existing docker images and containers
+# WARNING! Potentially destrictive
+docker rmi -f $(docker images -q)
+docker rm -f $(docker ps -a -q)
