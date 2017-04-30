@@ -1,4 +1,0 @@
-aiohttp_jinja2
-jinja2
-aioredis
-aiohttp
