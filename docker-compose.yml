@@ -14,5 +14,9 @@ services:
     volumes:
      - ./receive:/app
 
+  web:
+    build: ./web
+    volumes:
+    - ./webview:app
 
 
