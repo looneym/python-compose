@@ -54,7 +54,7 @@ async def wshandler(request):
 # asynchronous method to listen for messages from redis
 async def listen_to_redis(app):
     try:
-        sub = await aioredis.create_redis(('localhost', 6379), loop=app.loop)
+        sub = await aioredis.create_redis(('redis', 6379), loop=app.loop)
         ch, *_ = await sub.subscribe('news')
         async for msg in ch.iter(encoding='utf-8'):
             # Forward message to all connected websockets:

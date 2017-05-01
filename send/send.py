@@ -7,19 +7,18 @@ while not connected:
     try:
         print("Attempring to connect to RabbitMQ. Attempt number %d") % (counter)
         connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbit'))
-        print("Connected succesfully")
         connected = True
     except Exception, e:
         print(str(e))
-        print("Unable to establish a connection. Trying again in 10 seconds")
-        time.sleep(10)
+        print("Unable to establish a connection. Trying again in 45 seconds")
+        time.sleep(45)
         counter += 1 
 
     
 channel = connection.channel()
-channel.queue_declare(queue='hello')
+channel.queue_declare(queue='my_queue')
 
-for x in range(0, 100):
+for x in range(0, 100000):
   channel.basic_publish(exchange='',
                         routing_key='hello',
                         body=str(x))
