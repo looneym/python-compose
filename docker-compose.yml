@@ -3,6 +3,7 @@ version: "3"
 services:
   rabbit:
     image: rabbitmq
+    container_name: rabbit
 
   send:
     build: ./send
