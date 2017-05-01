@@ -1,5 +1,6 @@
 import pika
 import time
+from random import randint
 
 connected = False
 counter = 1
@@ -18,11 +19,12 @@ while not connected:
 channel = connection.channel()
 channel.queue_declare(queue='my_queue')
 
-for x in range(0, 100000):
-  channel.basic_publish(exchange='',
+while True:
+    x = randint(0,10000)
+    channel.basic_publish(exchange='',
                         routing_key='hello',
                         body=str(x))
-  print(" [x] Sent %d") % (x)
+    print(" [x] Sent %d") % (x)
 
 connection.close()
 
