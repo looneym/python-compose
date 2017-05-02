@@ -9,7 +9,7 @@
       var conn = null;
       function log(msg) {
         var control = $('#log');
-        console.log(msg);
+        $('#current-prime').text(msg);
       }
       function connect() {
         disconnect();
@@ -103,16 +103,10 @@
   <input id="send" type="button" value="Send" />
 </form>
 
-<div id="container"></div>
+<div id="container">
+<p id="current-prime"></p>
+</div>
 
-<script type="text/javascript">
-for (var i = 1 ; i < 500 ; i++){
-  var node = document.createElement("DIV");
-  node.setAttribute("id", i);
-  node.setAttribute("class", "prime");
-  document.getElementById("container").appendChild(node); 
-}
-</script>
 
 
 </body>
