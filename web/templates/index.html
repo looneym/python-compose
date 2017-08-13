@@ -2,7 +2,9 @@
 <meta charset="utf-8" />
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+
 </script>
   <script language="javascript" type="text/javascript">
     $(function() {
@@ -21,7 +23,7 @@
           update_ui();
         };
         conn.onmessage = function(e) {
-          log('Received: ' + e.data);
+          log(e.data);
         };
         conn.onclose = function() {
           log('Disconnected.');
@@ -71,43 +73,32 @@
       });
     });
 </script>
+
 </head>
+
 <body>
 
-<style>
-.container {
-    background-color: #000000;
-    font-size: 150px;
-}
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <h1 class="text-center heading">The Prime Directive</h1>
+        <img src="https://user-images.githubusercontent.com/12705417/29249521-e1a8a2e6-8028-11e7-9073-642dd4228bb8.png">
 
+        <p>Sender nodes are currently generating random numbers and throwing them on a queue using RabbitMQ. Worker nodes are consuming them and checking them to see if they are prime.</p>
+        <p>If so, they are placed on another queue, this time using Redis. A Python webapp using an async web server framework called aiohttp is listening to this queue and pushing everything through a websocket connection.</p>
+        <p>Some Javascript code on this page is ready to connect to the websocket and display the latest data in the DOM.</p>
+        <div>
+        <button id="connect">Connect to websocket</button>&nbsp;|&nbsp;Status:
+        <span id="status">disconnected</span>
+        </div>
 
-.prime {
-    background: #FFFFFF;
-    width: 1px;
-    height: 1px;
-    margin: 1px 1px 1px 1px;
-    float: left;
-}
-</style>
-
-<h3>Chat!</h3>
-<div>
-  <button id="connect">Connect</button>&nbsp;|&nbsp;Status:
-  <span id="status">disconnected</span>
+        <div id="container">
+        <p> Latest prime: <span id="current-prime"></span></p>
+        </div>
+    </div>
+  </div>
 </div>
-<div id="log"
-     style="width:20em;height:15em;overflow:auto;border:1px solid black">
-</div>
-<form id="chatform" onsubmit="return false;">
-  <input id="text" type="text" />
-  <input id="send" type="button" value="Send" />
-</form>
-
-<div id="container">
-<p id="current-prime"></p>
-</div>
-
-
 
 </body>
+
 </html>
